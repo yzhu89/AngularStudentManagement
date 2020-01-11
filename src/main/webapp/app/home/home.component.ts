@@ -28,6 +28,13 @@ export class HomeComponent implements OnInit {
 
     coursesWithTN: CourseWithTNDto[] = [];
 
+    createCourseName: string = "";
+    createCourseLocation: string = "";
+    createCourseContent: string = "";
+    creatCourseTeacherId: string = "";
+
+    newCourse: CourseDto;
+
     ngOnInit() {
         this.principal.identity().then(account => {
             this.account = account;
