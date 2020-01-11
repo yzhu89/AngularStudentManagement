@@ -101,4 +101,12 @@ export class HomeComponent implements OnInit {
             }
         });
     }
+
+    createCourse(createCourseName: string, createCourseLocation: string, createCourseContent: string, creatCourseTeacherId: string) {
+        this.newCourse.courseName = createCourseName;
+        this.newCourse.courseLocation = createCourseLocation;
+        this.newCourse.courseContent = createCourseContent;
+        this.newCourse.teacherId = creatCourseTeacherId;
+        this.courseService.addCourse(this.newCourse);
+    }
 }
