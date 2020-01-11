@@ -5,6 +5,7 @@ import com.mycompany.myapp.domain.dto.CourseDto;
 import com.mycompany.myapp.domain.dto.CourseWithTNDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.Cacheable;
@@ -14,8 +15,8 @@ import java.util.Optional;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Long> {
-//    @Query("SELECT Course FROM course c  WHERE c.name = :courseName")
-//    Course findCourseByCourseName(@Param("courseName") String courseName);
+    @Query(value = "SELECT Course FROM course c  WHERE c.name = :courseName", nativeQuery = true)
+    Long findCourseByName(@Param("courseName") String courseName);
 
     @Query("SELECT new com.mycompany.myapp.domain.dto.CourseDto(c.courseName, c.courseLocation, c.courseContent, c.teacherId) from Course c")
     List<CourseDto> findAllCoursesDto();

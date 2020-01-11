@@ -34,7 +34,7 @@ spring:
     devtools:
         restart:
             enabled: true
-        livereload:
+        livereload:yarn start
             enabled: false # we use Webpack dev server + BrowserSync for livereload
     jackson:
         serialization.indent_output: true
@@ -42,7 +42,7 @@ spring:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/jiuzhangquanzhanke?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
         username: root
-        password: xiaowangzi123
+        password: Zyw@8789
         hikari:
             data-source-properties:
                 cachePrepStmts: true
