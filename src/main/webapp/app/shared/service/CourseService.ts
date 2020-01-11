@@ -24,8 +24,8 @@ export class CourseService {
         return this.http.get<CourseWithTNDto[]>(`${this.courseAddressWithTNUrl}`);
     }
 
-    delete(courseName: String): Observable<Response> {
-        return this.http.delete<Response>(`${this.courseDeleteUrl}/${courseName}`);
+    delete(courseName: String): Observable<CourseDto[]> {
+        return this.http.delete<CourseDto[]>(`${this.courseDeleteUrl}/${courseName}`);
     }
 
     update(course: CourseDto): Observable<Response> {

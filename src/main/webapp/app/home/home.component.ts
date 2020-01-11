@@ -84,4 +84,14 @@ export class HomeComponent implements OnInit {
     //     const courseName = 'temp';
     //     this.courseService.addCourseToStudent(courseName, currentUserCredential);
     // }
+    deleteCourseToTeacher(deleteCourseName: String) {
+        this.courses = [];
+        this.courseService.delete(deleteCourseName).subscribe(curDto => {
+            if (!curDto) {
+                this.courses = [];
+            } else {
+                this.courses = curDto;
+            }
+        });
+    }
 }
