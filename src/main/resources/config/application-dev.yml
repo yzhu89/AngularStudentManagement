@@ -34,7 +34,7 @@ spring:
     devtools:
         restart:
             enabled: true
-        livereload:yarn start
+        livereload:
             enabled: false # we use Webpack dev server + BrowserSync for livereload
     jackson:
         serialization.indent_output: true

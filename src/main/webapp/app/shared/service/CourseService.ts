@@ -12,12 +12,12 @@ export class CourseService {
     private courseDeleteUrl = SERVER_API_URL + '/api/course/deleteCourse';
     private courseUpdateUrl = SERVER_API_URL + '/api/course/updateCourse';
     private addCourseToStudentUrl = SERVER_API_URL + '/api/course/addCourseToStudent';
-    private addCourseUrl = SERVER_API_URL + '/api/course/addCourse';
+    private addCourseUrl = SERVER_API_URL + '/api/course/createCourse';
 
     constructor(private http: HttpClient) {}
 
     getCourseInfo(): Observable<CourseDto[]> {
-        debugger;
+        //debugger;
         return this.http.get<CourseDto[]>(`${this.courseAddressUrl}`);
     }
 
@@ -37,7 +37,7 @@ export class CourseService {
         return this.http.post(SERVER_API_URL + '/api/course/addCourseToStudent', { courseName, currentUserCredential });
     }
 
-    addCourse(newCourse: CourseDto) {
-        return this.http.post(SERVER_API_URL + '/api/course/addCourse', { newCourse });
+    addCourse(newCourse: CourseDto): Observable<CourseDto[]> {
+        return this.http.post<CourseDto[]>(this.addCourseUrl, newCourse);
     }
 }

@@ -16,14 +16,6 @@ export class HomeComponent implements OnInit {
     account: Account;
     modalRef: NgbModalRef;
     classeNameNeedToReg: string;
-
-    constructor(
-        private principal: Principal,
-        private loginModalService: LoginModalService,
-        private eventManager: JhiEventManager,
-        private courseService: CourseService
-    ) {}
-
     courses: CourseDto[] = [];
 
     coursesWithTN: CourseWithTNDto[] = [];
@@ -34,6 +26,13 @@ export class HomeComponent implements OnInit {
     creatCourseTeacherId: string = "";
 
     newCourse: CourseDto;
+
+    constructor(
+        private principal: Principal,
+        private loginModalService: LoginModalService,
+        private eventManager: JhiEventManager,
+        private courseService: CourseService
+    ) {}
 
     ngOnInit() {
         this.principal.identity().then(account => {
@@ -102,11 +101,22 @@ export class HomeComponent implements OnInit {
         });
     }
 
-    createCourse(createCourseName: string, createCourseLocation: string, createCourseContent: string, creatCourseTeacherId: string) {
+    createCourse(createCourseName: string, createCourseLocation: string,
+                 createCourseContent: string, creatCourseTeacherId: string) {
+        //const newCourse = new CourseDto();
         this.newCourse.courseName = createCourseName;
         this.newCourse.courseLocation = createCourseLocation;
         this.newCourse.courseContent = createCourseContent;
         this.newCourse.teacherId = creatCourseTeacherId;
-        this.courseService.addCourse(this.newCourse);
+        this.courseService.addCourse(this.newCourse).subscribe(curDto => {
+            if (!curDto) {
+                this.courses = [];
+            } else {
+                this.courses = curDto;
+            }
+        });
+        //     response => {
+        //     alert(response);
+        // });
     }
 }
