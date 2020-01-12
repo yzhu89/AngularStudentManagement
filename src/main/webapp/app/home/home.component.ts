@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     createCourseTeacherId: string = '';
     createCourseNum: number = 0;
 
-    private currentUserCredential: String;
+    private currentUserCredential: String = 'admin';
     //newCourse: CourseDto;
 
     constructor(
@@ -69,6 +69,17 @@ export class HomeComponent implements OnInit {
         });
     }
 
+    getRegisteredCourses() {
+        debugger;
+        this.courseService.getCourseInfo().subscribe(curDto => {
+            if (!curDto) {
+                this.courses = [];
+            } else {
+                this.courses = curDto;
+            }
+        });
+    }
+
     getAllCoursesWithTN() {
         this.courseService.getCourseInfoWithTN().subscribe(curDto => {
             if (!curDto) {
@@ -87,10 +98,11 @@ export class HomeComponent implements OnInit {
         this.courses = [];
     }
 
-    addCourseToStudent() {
-        const courseName = 'temp';
+    addCourseToStudent(registerCourseName: string) {
+        const courseName = registerCourseName;
         this.courseService.addCourseToStudent(courseName, this.currentUserCredential);
     }
+
     deleteCourseToTeacher(deleteCourseName: String) {
         this.courses = [];
         this.courseService.delete(deleteCourseName).subscribe(curDto => {
