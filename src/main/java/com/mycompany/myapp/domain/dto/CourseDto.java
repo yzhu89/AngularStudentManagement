@@ -14,5 +14,5 @@ public class CourseDto {
 
     private String courseContent;
 
-    private long teacherId;
+    private String teacherId;
 }

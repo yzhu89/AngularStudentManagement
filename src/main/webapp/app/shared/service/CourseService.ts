@@ -37,7 +37,7 @@ export class CourseService {
         return this.http.post(SERVER_API_URL + '/api/course/addCourseToStudent', { courseName, currentUserCredential });
     }
 
-    addCourse(newCourse: CourseDto): Observable<CourseDto[]> {
-        return this.http.post<CourseDto[]>(this.addCourseUrl, newCourse);
+    addCourse(newCourse: CourseDto): Observable<Response> {
+        return this.http.post<Response>(this.addCourseUrl, newCourse);
     }
 }

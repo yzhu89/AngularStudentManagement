@@ -33,6 +33,6 @@ public class Course {
     @Column(name = "course_content", nullable = false, length = 200, columnDefinition = "nvarchar(200)")
     private String courseContent;
 
-    @Column(name = "teacher_id", nullable = false, columnDefinition = "bigint")
-    private long teacherId;
+    @Column(name = "teacher_id", nullable = false, length = 30, columnDefinition = "nvarchar(30)")
+    private String teacherId;
 }

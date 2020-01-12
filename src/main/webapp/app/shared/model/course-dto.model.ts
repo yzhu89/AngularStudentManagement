@@ -3,4 +3,5 @@ export class CourseDto {
     courseLocation: string;
     courseContent: string;
     teacherId: string;
+    courseNum: number;
 }

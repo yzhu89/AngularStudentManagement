@@ -43,7 +43,7 @@
                     <div class="col-2">{{course.courseLocation}}</div>
                     <div class="col-2">{{course.courseContent}}</div>
                     <div class="col-2">{{course.teacherId}}</div>
-                    <button (click)="addCourseToStudent()">注册课程</button>
+                    <button (click)="addCourseToStudent(this.course.courseName)">注册课程</button>
                     <button (click)="deleteCourseToTeacher(this.course.courseName)">删除课程</button>
                 </div>
             </div>
@@ -66,21 +66,24 @@
         <hr>
         <div *ngIf="isAuthenticated()">
             <div>
-                <span>课程名称</span><input type="text" [(ngModel)]="createCourseName">
+                <span>课程编码</span><input type='number' [(ngModel)]="createCourseNum">
 
             </div>
             <div>
-                <span>课程地点</span><input type="text" [(ngModel)]="createCourseLocation">
+                <span>课程名称</span><input type='text' [(ngModel)]="createCourseName">
+
             </div>
             <div>
-                <span>所属院系</span><input type="text" [(ngModel)]="createCourseContent">
+                <span>课程地点</span><input type='text' [(ngModel)]="createCourseLocation">
             </div>
             <div>
-                <span>课程老师</span><input type="text" [(ngModel)]="creatCourseTeacherId">
+                <span>所属院系</span><input type='text' [(ngModel)]="createCourseContent">
+            </div>
+            <div>
+                <span>课程老师</span><input type='text' [(ngModel)]="createCourseTeacherId">
             </div>
             </div>
-            <button (click)="createCourse(createCourseName, createCourseLocation,
-                createCourseContent, creatCourseTeacherId)"> 创建 </button>
+            <button (click)="createCourse()"> 创建 </button>
         </div>
 
         <!--<div *ngIf="isAuthenticated()">-->

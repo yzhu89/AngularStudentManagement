@@ -17,15 +17,16 @@ export class HomeComponent implements OnInit {
     modalRef: NgbModalRef;
     classeNameNeedToReg: string;
     courses: CourseDto[] = [];
-
     coursesWithTN: CourseWithTNDto[] = [];
 
-    createCourseName: string = "";
-    createCourseLocation: string = "";
-    createCourseContent: string = "";
-    creatCourseTeacherId: string = "";
+    createCourseName: string = '';
+    createCourseLocation: string = '';
+    createCourseContent: string = '';
+    createCourseTeacherId: string = '';
+    createCourseNum: number = 0;
 
-    newCourse: CourseDto;
+    private currentUserCredential: String;
+    //newCourse: CourseDto;
 
     constructor(
         private principal: Principal,
@@ -86,10 +87,10 @@ export class HomeComponent implements OnInit {
         this.courses = [];
     }
 
-    // addCourseToStudent() {
-    //     const courseName = 'temp';
-    //     this.courseService.addCourseToStudent(courseName, currentUserCredential);
-    // }
+    addCourseToStudent() {
+        const courseName = 'temp';
+        this.courseService.addCourseToStudent(courseName, this.currentUserCredential);
+    }
     deleteCourseToTeacher(deleteCourseName: String) {
         this.courses = [];
         this.courseService.delete(deleteCourseName).subscribe(curDto => {
@@ -101,22 +102,15 @@ export class HomeComponent implements OnInit {
         });
     }
 
-    createCourse(createCourseName: string, createCourseLocation: string,
-                 createCourseContent: string, creatCourseTeacherId: string) {
-        //const newCourse = new CourseDto();
-        this.newCourse.courseName = createCourseName;
-        this.newCourse.courseLocation = createCourseLocation;
-        this.newCourse.courseContent = createCourseContent;
-        this.newCourse.teacherId = creatCourseTeacherId;
-        this.courseService.addCourse(this.newCourse).subscribe(curDto => {
-            if (!curDto) {
-                this.courses = [];
-            } else {
-                this.courses = curDto;
-            }
+    createCourse() {
+        const newCourse = new CourseDto();
+        newCourse.courseNum = this.createCourseNum;
+        newCourse.courseName = this.createCourseName;
+        newCourse.courseLocation = this.createCourseLocation;
+        newCourse.courseContent = this.createCourseContent;
+        newCourse.teacherId = this.createCourseTeacherId;
+        this.courseService.addCourse(newCourse).subscribe(response => {
+            alert(response);
         });
-        //     response => {
-        //     alert(response);
-        // });
     }
 }
